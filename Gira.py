@@ -1,7 +1,7 @@
 from Pila import *
 
 def Resolv(A, X, Clock):
-	B = [0, 0, 0, 0] # hay alguna otra forma de obtener este vector? 
+	B = [0] * len(X) # creo es la forma más adecuada
 	for i in range(len(X)):
 		B[i] = X[i]
 	#sentido manecillas de reloj
