@@ -10,22 +10,22 @@ def main():
 	C.apilar(X);
 	An, Con = Resolv(Fin, X, 'R')
 	C.apilar(An);
-	#print Con
-	#Bn, Con = Resolv(Fin, B, 'I')
-	#C.apilar(Bn);
-	#print Con
-	#Cn, Con = Resolv(Fin, An, 'R')
-	#C.apilar(Cn);
-	#print Con
-	#Dn, Con = Resolv(Fin, An, 'I')
-	#C.apilar(Dn);
-	#print Con
-	#En, Con = Resolv(Fin, Bn, 'R')
-	#C.apilar(En);
-	#print Con
-	#Fn, Con = Resolv(Fin, Bn, 'I')
-	#C.apilar(Fn);
-	#print Con
+	print Con
+	Bn, Con = Resolv(Fin, X, 'I')
+	C.apilar(Bn);
+	print Con
+	Cn, Con = Resolv(Fin, An, 'R')
+	C.apilar(Cn);
+	print Con
+	Dn, Con = Resolv(Fin, An, 'I')
+	C.apilar(Dn);
+	print Con
+	En, Con = Resolv(Fin, Bn, 'R')
+	C.apilar(En);
+	print Con
+	Fn, Con = Resolv(Fin, Bn, 'I')
+	C.apilar(Fn);
+	print Con
 	
 	print C.items
 	
