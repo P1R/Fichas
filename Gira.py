@@ -1,8 +1,10 @@
 from Pila import *
 
 def Resolv(A, X, Clock):
-	B=len(X)
-#sentido manecillas de reloj
+	B = [0, 0, 0, 0] # hay alguna otra forma de obtener este vector? 
+	for i in range(len(X)):
+		B[i] = X[i]
+	#sentido manecillas de reloj
 	if Clock == 'R':
 		if B[0]=='B':
 			#Cambio Derecha de 0
