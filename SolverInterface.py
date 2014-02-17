@@ -99,43 +99,127 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Form", None))
         self.pushButton.setText(_translate("Form", "Resolver", None))
         self.pushButton_2.setText(_translate("Form", "Limpiar", None))
-	
-	#funcion para verificar lista bien ingresada
-	#def VerCad(X):
-		#X.index(B)
-		
-        
+    
+    #def VerCad(self,X):
+		#text = "Error en los datos ingresados, deben ser 1, 2, 3 o B y no repetirlos"
+		#for i in X:
+			#if int(X[i])== 1 or int(X[i])== 2 or int(X[i])==3:
+				#if len(X)!=len(set(X)):
+					#QMessageBox.information(self.iface.mainWindow(),"test", "%s" % (text), QMessageBox.Ok)
+					#self.lineEdit.clear
+					#self.lineEdit_2.clear
+					#self.lineEdit_3.clear
+					#self.lineEdit_4.clear
+					#self.label.clear
+					#self.treeView.reset
+				#else:	
+					#X[i] = int(X[i])
+			#elif 'b' == find(X[i],'b') or X[i] =='%c' % find(X[i],'B'):
+				#if len(X)!=len(set(X)):
+					#QMessageBox.information(self.iface.mainWindow(),"test", "%s" % (text), QMessageBox.Ok)
+					#self.lineEdit.clear
+					#self.lineEdit_2.clear
+					#self.lineEdit_3.clear
+					#self.lineEdit_4.clear
+					#self.label.clear
+					#self.treeView.reset
+				#else:
+					#X[i] = 'B'
+			#else:
+				#QMessageBox.information(self.iface.mainWindow(),"test", "%s" % (text), QMessageBox.Ok)
+				#self.lineEdit.clear
+				#self.lineEdit_2.clear
+				#self.lineEdit_3.clear
+				#self.lineEdit_4.clear
+				#self.label.clear
+				#self.treeView.reset	
+		#return X	
+			
+    #def VerCad(self,X):
+		#text = "Error en los datos ingresados, deben ser 1, 2, 3 o B y no repetirlos"
+		#for i in X:
+			#if int(X[i])== 1 or int(X[i])== 2 or int(X[i])==3:
+				#if len(X)!=len(set(X)):
+					#QMessageBox.information(self.iface.mainWindow(),"test", "%s" % (text), QMessageBox.Ok)
+					#self.lineEdit.clear
+					#self.lineEdit_2.clear
+					#self.lineEdit_3.clear
+					#self.lineEdit_4.clear
+					#self.label.clear
+					#self.treeView.reset
+				#else:	
+					#X[i] = int(X[i])
+			#elif 'b' == find(X[i],'b') or X[i] =='%c' % find(X[i],'B'):
+				#if len(X)!=len(set(X)):
+					#QMessageBox.information(self.iface.mainWindow(),"test", "%s" % (text), QMessageBox.Ok)
+					#self.lineEdit.clear
+					#self.lineEdit_2.clear
+					#self.lineEdit_3.clear
+					#self.lineEdit_4.clear
+					#self.label.clear
+					#self.treeView.reset
+				#else:
+					#X[i] = 'B'
+			#else:
+				#QMessageBox.information(self.iface.mainWindow(),"test", "%s" % (text), QMessageBox.Ok)
+				#self.lineEdit.clear
+				#self.lineEdit_2.clear
+				#self.lineEdit_3.clear
+				#self.lineEdit_4.clear
+				#self.label.clear
+				#self.treeView.reset	
+		#return X					
     def procesar(self):
+		text = "Error en los datos ingresados, deben ser 1, 2, 3 o B y no repetirlos"
 		Fin=[1,2,3,'B'];
 		C=Pila();
 		X=[3,2,1,'B'];
+		Found=Pila();
 		X[0]=str(_fromUtf8(self.lineEdit.text()))
 		X[1]=str(_fromUtf8(self.lineEdit_2.text()))
 		X[2]=str(_fromUtf8(self.lineEdit_3.text()))
 		X[3]=str(_fromUtf8(self.lineEdit_4.text()))
+		
+		for i in range(len(X)):
+			try:
+				X[i]=int(X[i])
+			except(ValueError,TypeError):
+				if X[i] == 'b' or X[i] == 'B':
+					X[i] = 'B'
+					pass
+				else:
+					QMessageBox.information(self.iface.mainWindow(),"test", "%s" % (text), QMessageBox.Ok)
+					#self.lineEdit.clear
+					#self.lineEdit_2.clear
+					#self.lineEdit_3.clear
+					#self.lineEdit_4.clear
+					#self.label.clear
+					#self.treeView.reset
+					#break
 		print X
-		#C.apilar(X);
-		#print C.items
-		#An, Con = Resolv(Fin, X, 'R')
-		#C.apilar(An);
-		#print Con
-		#Bn, Con = Resolv(Fin, X, 'I')
-		#C.apilar(Bn);
-		#print Con
-		#Cn, Con = Resolv(Fin, An, 'R')
-		#C.apilar(Cn);
-		#print Con
-		#Dn, Con = Resolv(Fin, An, 'I')
-		#C.apilar(Dn);
-		#print Con
-		#En, Con = Resolv(Fin, Bn, 'R')
-		#C.apilar(En);
-		#print Con
-		#Fn, Con = Resolv(Fin, Bn, 'I')
-		#C.apilar(Fn);
-		#print Con
-		#print C.items
-		#QMessageBox.information(self.iface.mainWindow(),"test", "%s" %(text), QMessageBox.Ok)
+		C.apilar(X);
+		Found.apilar(False)
+		An, Con = Resolv(Fin, X, 'R')
+		C.apilar(An);
+		Found.apilar(Con)
+		Bn, Con = Resolv(Fin, X, 'I')
+		C.apilar(Bn);
+		Found.apilar(Con)
+		Cn, Con = Resolv(Fin, An, 'R')
+		C.apilar(Cn);
+		Found.apilar(Con)
+		Dn, Con = Resolv(Fin, An, 'I')
+		C.apilar(Dn);
+		Found.apilar(Con)
+		En, Con = Resolv(Fin, Bn, 'R')
+		C.apilar(En);
+		Found.apilar(Con)
+		Fn, Con = Resolv(Fin, Bn, 'I')
+		C.apilar(Fn);
+		Found.apilar(Con)
+		print C.items
+		print Found.items
+		print Found.items.index(True);
 		
 
 if __name__ == "__main__":
