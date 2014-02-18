@@ -7,7 +7,7 @@ class Pila(object):
 		if self.vacia():
 			return None
 		else:
-			return self.items.pop()
+			return self.items.pop(0)
 	def vacia(self):
 		if len(self.items)==0:
 			return True

@@ -196,6 +196,7 @@ class Ui_Form(object):
         
     def procesar(self):
 		text = "Error en los datos ingresados, deben ser 1, 2, 3 o B y no repetirlos"
+		k = 0;
 		C=Pila();
 		cont = 0;
 		final=[0]*4;
@@ -228,7 +229,7 @@ class Ui_Form(object):
 				else:
 					QMessageBox.information(self.iface.mainWindow(),"test", "%s" % (text), QMessageBox.Ok)
 		C.apilar(pilaf)	
-		while(pilaf != final):
+		while(pilaf != final or k < 20):
 			C.desapilar()       
 			derecha, sux = Resolv(final, pilaf, 'R')
 			
@@ -255,28 +256,10 @@ class Ui_Form(object):
 				cont = 0
 						
 			for i in range(len(pilaf)):
-				pilaf[i] = izq[i]
-			#if sonListasIguales(pilaf, final):
-				#raw_input()
-			#elif sonListasIguales(derecha, final):
-				#ordenar(derecha)
-			#else:
-				#ordenar(pilaf)
-			#for j in range(len(C.items)):
-				#a = ''.join(C.items[j])
-				#textpila = letrapila.render(a, True, BLANCO) 
-				#rectpila = textpila.get_rect()   
-				#rectpila.centerx = 500
-				#rectpila.centery = aux
-				#pantalla.blit(textpila, rectpila)
-				#aux += 10
-				#a = ''
+				pilaf[i] = derecha[i]
 			self.textBrowser.append("%s" % C.items)
-			#pygame.display.update()
-			#print pilaf
-			#self.textBrowser.append("%s" % pilaf) 
-			#print final 
-			#self.textBrowser.append("%s" % final)       
+			k += 1
+     
 		
 if __name__ == "__main__":
     import sys;
